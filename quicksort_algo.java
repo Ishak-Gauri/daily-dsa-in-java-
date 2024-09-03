@@ -69,3 +69,5 @@ class quicksort_algo
            
      }
 }
+
+// time complexity of Quicksort algorithm is O(n*logn) in average case and in worst case is O(n^2)
