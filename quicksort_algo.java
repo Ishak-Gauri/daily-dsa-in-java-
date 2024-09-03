@@ -1,61 +1,71 @@
-import java.util.*;
 
-class quicksort_algo {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the size of array");
-        int n = sc.nextInt();
-        int[] arr = new int[n];
-        System.out.println("Enter the elements of array");
-        for (int i = 0; i < n; i++) {
-            arr[i] = sc.nextInt();
-        }
-        int start = 0;
-        int end = arr.length - 1;
-        quicksort(arr, start, end);
+import java.util.Scanner;
 
-        System.out.println("The elements of sorted array are");
-        for (int i : arr) {
-            System.out.print(i + " ");
-        }
-    }
 
-    static void quicksort(int[] arr, int start, int end) {
-        if (start < end) { // Fix the condition here
-            int mid = divide(arr, start, end);
-            quicksort(arr, start, mid - 1);
-            quicksort(arr, mid + 1, end);
+class quicksort_algo
+{
+    public static void main(String[] args) 
+    {
+       Scanner sc = new Scanner(System.in);
+       System.out.println("Enter the size of array");
+       int n = sc.nextInt();
+       int[] arr= new int[n];
+       System.out.println("Enter the elements of array");
+       for(int i =0;i<n;i++)
+       {
+        arr[i]= sc.nextInt();
+       }
+       int start =0;
+       int end = arr.length-1;
+        quicksort(arr,start,end);
+        System.out.println("The elemnts of sorted array are");
+        for(int i:arr)
+        {
+            System.out.println(i+" ");
         }
     }
 
-    static int divide(int[] arr, int start, int end) {
-        int pivot = arr[start];
-        int p = start + 1;
-        int q = end;
+    static void quicksort(int[] arr,int start,int end)
+    {
+        if (start < end)
+        {
+            int mid = divide(arr,start,end);
+            quicksort(arr,start,mid-1);
+            quicksort(arr,mid+1,end);
+        }
+    }
 
-        while (p <= q) {
-            while (p <= q && arr[p] <= pivot) {
+    static int divide (int[] arr,int start,int end)
+    {
+           int pivot= arr[start];
+           int p = start+1;
+           int q = end;
+
+           while(p <= q) 
+           {
+            if (p <= q && arr[p] <= pivot)
+            {
                 p++;
             }
-            while (p <= q && arr[q] > pivot) {
+
+            if (p <= q && arr[q] > pivot)
+            {
                 q--;
             }
-
-            if (p <= q) {
-                // Swap elements p and q 
+           }
+            if(p < q) 
+            {
                 int temp = arr[p];
                 arr[p] = arr[q];
-                arr[q] = temp;
+                arr[q]= temp;
                 p++;
                 q--;
             }
-        }
+            int temp = arr[start];
+            arr[start]= arr[q];
+            arr[q]= temp;
 
-        // Swap pivot with element at q
-        int temp = arr[start];
-        arr[start] = arr[q];
-        arr[q] = temp;
-
-        return q;
-    }
+            return q;
+           
+     }
 }
